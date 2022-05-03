@@ -5,7 +5,7 @@
       * {
         all: unset;
         display: revert;
-        border: 1px solid blue;
+        /* border: 1px solid blue; */
       }
       /* 
       4
@@ -35,6 +35,14 @@
       .small {
         font-size: 16px;
       }
+      input {
+        all: revert;
+        accent-color: #f97316;
+      }
+      .flex {
+        display: flex;
+        gap: 8px;
+      }
     </style>
   </head>
   <body>
@@ -47,11 +55,14 @@
       account, verify your email.Don’t lose access to your account, verify your
       email.Don’t lose access to your account, verify your email.
     </p>
-    <p class="small">
-      Want to receive news, updates and offers from FoodMatch. Want to receive
-      news, updates and offers from FoodMatch.Want to receive news, updates and
-      offers from FoodMatch.Want to receive news, updates and offers from
-      FoodMatch.
-    </p>
+    <div class="flex">
+      <input type="checkbox"></input>
+      <p class="small">
+        Want to receive news, updates and offers from FoodMatch. Want to receive
+        news, updates and offers from FoodMatch.Want to receive news, updates and
+        offers from FoodMatch.Want to receive news, updates and offers from
+        FoodMatch.
+      </p>
+    </div>
   </body>
 </html>

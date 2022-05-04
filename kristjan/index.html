@@ -1,28 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap"
+      rel="stylesheet"
+    />
     <style>
       * {
-        all: unset;
-        display: revert;
-        border: 1px solid blue;
+        /* border: 1px solid blue !important; */
       }
-      /* 
-      4
-      8
-      16
-      20 // typole
-      24
-      32
-      64
-      */
       body {
-        font-family: sans-serif;
-        background: #fed7aa;
+        font-family: "Rubik", sans-serif;
+        background: hsl(32, 98%, 83%);
         padding: 32px;
+        margin: 0;
       }
       h1 {
-        color: #f97316;
+        color: hsl(25, 95%, 53%);
         font-size: 32px;
         font-weight: bold;
         margin-bottom: 16px;
@@ -35,23 +32,62 @@
       .small {
         font-size: 16px;
       }
+
+      button {
+        background: hsl(33, 100%, 96%);
+        box-shadow: 0px 4px 4px hsl(0, 0%, 0%, 0.1);
+        border-radius: 8px;
+        border: none;
+        padding: 16px 32px;
+        font-family: "Rubik", sans-serif;
+        font-size: 20px;
+        color: hsl(25, 95%, 53%);
+        width: 100%;
+      }
+      button:hover {
+        background: hsl(33, 100%, 92%);
+      }
+      .page {
+        max-width: 60ch;
+        margin: 0 auto;
+      }
     </style>
+    <script src="https://unpkg.com/petite-vue" defer init></script>
   </head>
-  <body>
-    <h1>What’s your email?</h1>
-    <p>
-      Don’t lose access to your account, verify your email. Don’t lose access to
-      your account, verify your email.Don’t lose access to your account, verify
-      your email.Don’t lose access to your account, verify your email.Don’t lose
-      access to your account, verify your email.Don’t lose access to your
-      account, verify your email.Don’t lose access to your account, verify your
-      email.Don’t lose access to your account, verify your email.
-    </p>
-    <p class="small">
-      Want to receive news, updates and offers from FoodMatch. Want to receive
-      news, updates and offers from FoodMatch.Want to receive news, updates and
-      offers from FoodMatch.Want to receive news, updates and offers from
-      FoodMatch.
-    </p>
+  <body v-scope="{ name: 'homepage' }">
+    name: {{ name }}
+    <div v-if="name == 'homepage'" class="page">
+      <h1>Welcome!</h1>
+      <p>
+       Ciaobella
+      </p>
+      <button @click="name = 'email'">Enter you email</button>
+    </div>
+
+    <div v-if="name == 'email'" class="page">
+      <h1>What’s your email?</h1>
+      <p>
+        Don’t lose access to your account, verify your email. Don’t lose access to
+        your account, verify your email.
+      </p>
+      <p class="small">
+        Want to receive news, updates and offers from FoodMatch. Want to receive
+        news, updates and offers from FoodMatch.
+      </p>
+      <button @click="name = 'homepage'">Back to homepage</button>
+    </div>
   </body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
 </html>

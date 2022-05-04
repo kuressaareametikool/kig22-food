@@ -1,52 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap"
+        rel="stylesheet">
     <style>
-    * {
-        all: unset;
-        display: revert;
-     /* border: 1px solid blue; */
-    }
-    body{
-        font-family: sans-serif;
-        background: #fed7aa;
-        font-size: 20px;
-        padding: 32px;
-    }
-    h1{
-        color: #f97316;
-        font-size: 32px;
-        font-weight: bold;
-        margin-bottom: 16px;
-    }
-    p {
-        margin-bottom: 8px;
-        line-height: 28px;
-        line-height: 130%;
-    }
-  .small{
-      font-size: 16px;
-  }
-  input {
-        all: revert;
-        accent-color: #f97316;
-      }
-      .flex {
-        display: flex;
-        gap: 8px;
-      }
-</style>
+        body {
+            font-family: "Rubik", sans-serif;
+            background: hsl(32, 98%, 83%);
+            padding: 32px;
+            margin: 0;
+        }
+        h1 {
+            color: hsl(25, 95%, 53%);
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+        p {
+            margin-bottom: 8px;
+            line-height: 20px;
+            line-height: 130%;
+        }
+        .small {
+            font-size: 16px;
+        }
+
+        input {
+            all: revert;
+            accent-color: #f97316;
+        }
+
+        .flex {
+            display: flex;
+            gap: 8px;
+        }
+
+        button {
+            background: hsl(33, 100%, 96%);
+            box-shadow: 0px 4px 4px hsla(0, 0%, 0%, 0.1);
+            border-radius: 8px;
+            border: none;
+            padding: 16px 32px;
+            font-family: "Rubik", sans-serif;
+            font-size: 20px;
+            color: hsl(25, 95%, 53%);
+            width: 100%;
+        }
+
+        button:hover {
+            background: hsl(33, 100%, 90%);
+        }
+
+        .page {
+            max-width: 60ch;
+            margin: 0 auto;
+        }
+    </style>
+    <script src="https://unpkg.com/petite-vue" defer init></script>
+</head>
+<body v-scope="{ name: 'homepage' }">
+    name: {{ name }}
+    <div v-if="name == 'homepage'" class="page">
+        <h1>Welcome!</h1>
+        <p>
+         Ciaobella
+        </p>
+        <button @click="name = 'email'">Enter you email</button>
+      </div>
+
+
+    <div class="page">
+        </svg>
+        <div v-if="name == 'email'" class="page">
+        <h1>What's your email?</h1>
+        <br>
+        <p>Don’t lose access to your account, verify your email.</p>
+        <div class="flex">
+            <input type="checkbox"></input>
+            <p class="small">
+                I want to receive news, updates and offers from FoodMatch.
+            </p>
+        </div>
+        <button @click="name = 'homepage'">Back to homepage</button>
+        </div>
+        </div>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 <body>
-<h1>What's your email?</h1>
-<br>
-<br>
-<p>Don’t lose access to your account, verify your email.</p>
-<div class="flex">
-    <input type="checkbox"></input>
-<p class="small">
-I want to receive news, updates and offers from FoodMatch.
-</p>
-</div>
+  
 </body>
 </html>

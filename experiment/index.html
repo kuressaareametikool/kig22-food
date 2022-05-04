@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  </head>
+  <body>
+    <script type="importmap">
+      {
+        "imports": {
+          "vue": "https://unpkg.com/vue/dist/vue.esm-browser.prod.js",
+          "fachwerk": "https://unpkg.com/fachwerk/dist/fachwerk.mjs",
+          "fachwerk/internal": "https://unpkg.com/fachwerk/dist/internal.mjs",
+          "js-yaml": "https://unpkg.com/js-yaml/dist/js-yaml.mjs",
+          "@slidev/parser": "https://unpkg.com/@slidev/parser/dist/index.mjs",
+          "vue-demi": "https://unpkg.com/vue-demi/lib/index.mjs",
+          "@vueuse/shared": "https://unpkg.com/@vueuse/shared/index.mjs",
+          "@vueuse/core": "https://unpkg.com/@vueuse/core/index.mjs"
+        }
+      }
+    </script>
+    <script type="module">
+      import {
+        createApp,
+        ref,
+        h,
+        computed,
+        onMounted,
+        watchEffect,
+        watch,
+      } from "vue";
+      import { Fachwerk, data } from "fachwerk";
+      import { compileMarkdown, compileTemplate } from "fachwerk/internal";
+      import { parse } from "@slidev/parser";
+      import { useStorage, useMagicKeys } from "@vueuse/core";
+
+      const Compiler = {
+        props: ["code", "setup"],
+        setup(props) {
+          const Output = computed(() => {
+            return {
+              setup() {
+                return props.setup;
+              },
+              render: compileTemplate(compileMarkdown(props.code)).code,
+            };
+          });
+          return () => h(Output.value);
+        },
+      };
+
+      function parseSlides(code) {
+        let global = {};
+        try {
+          return parse(code).slides.map((s) => {
+            if (s.frontmatter?.data) {
+              Object.entries(s.frontmatter.data).forEach(([key, value]) => {
+                data[key] = value;
+              });
+            }
+            if (s.frontmatter?.global) {
+              global = { ...global, ...s.frontmatter.global };
+            }
+            s.frontmatter.global = global;
+            s.content = compileMarkdown(s.content);
+            return s;
+          });
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function useTab(length = 2) {
+        const input = ref(null);
+        onMounted(() => {
+          input.value.addEventListener("keydown", (e) => {
+            if (e.key === "Tab") {
+              e.preventDefault();
+              input.value.setRangeText(
+                Array.from({ length }).fill(" ").join(""),
+                input.value.selectionStart,
+                input.value.selectionStart,
+                "end"
+              );
+            }
+          });
+        });
+        return input;
+      }
+
+      function useSave(key, loader) {
+        const saved = useStorage(key, "");
+        const current = ref("");
+        const save = () => (saved.value = current.value);
+        const reset = () =>
+          loader().then((original) => {
+            saved.value = original;
+            current.value = original;
+          });
+        loader().then((original) => {
+          if (original !== saved.value) {
+            current.value = saved.value;
+          } else {
+            saved.value = original;
+            current.value = original;
+          }
+        });
+        return { current, saved, save, reset };
+      }
+
+      const App = {
+        components: { Compiler },
+        setup() {
+          const loader = () => fetch("./slides.md").then((res) => res.text());
+          const { current, save, reset } = useSave("slides_code", loader);
+          watch(current, save);
+
+          const edit = useStorage("slides_edit", false);
+          const editor = useTab();
+
+          const slides = computed(() => {
+            return parseSlides(current.value);
+          });
+          const slideIndex = useStorage("slides_index", 0);
+
+          const next = () => {
+            if (slideIndex.value < slides.value.length - 1) slideIndex.value++;
+          };
+          const prev = () => {
+            if (slideIndex.value > 0) slideIndex.value--;
+          };
+
+          const { shift, left, right } = useMagicKeys();
+
+          watchEffect(() => {
+            if (left.value && shift.value) prev();
+            if (right.value && shift.value) next();
+          });
+
+          return {
+            editor,
+            current,
+            save,
+            reset,
+            edit,
+            slides,
+            slideIndex,
+            next,
+            prev,
+          };
+        },
+        template: `
+          <div class="grid h-screen grid-cols-1" :class="[edit ? 'grid-cols-2' : 'grid-cols-1']">
+            <textarea
+              ref="editor"
+              v-show="edit"
+              v-model="current"
+              class="text-sm leading-6 text-gray-100 bg-gray-900 p-4 text-white font-mono"
+            />
+            <div>
+              <template v-for="slide in slides">
+                <div
+                  v-show="slide.index === slideIndex"
+                  class="prose max-w-none min-h-screen"
+                  :class="[slide.frontmatter?.global.class,slide.frontmatter?.class]"
+                >
+                  <Compiler :code="slide.content" :setup="{ prev, next }" />
+                </div>
+              </template>
+            </div>
+          </div>
+          <div v-show="edit" class="fixed left-4 bottom-4 flex gap-4 text-xs text-white opacity-50">
+            <button @click="reset">Reset</button>
+          </div>
+          <div class="fixed right-4 bottom-4 flex gap-4 text-xs text-black opacity-50">
+            <button @click="edit = !edit">{{ edit ? 'Preview' : 'Edit'}}</button>
+            <button @click="prev">‹</button>
+            <button @click="next">›</button>
+          </div>
+        `,
+      };
+
+      const app = createApp(App);
+      app.use(Fachwerk);
+      app.mount("#app");
+    </script>
+    <div id="app"></div>
+  </body>
+</html>

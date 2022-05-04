@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <script src="https://unpkg.com/petite-vue" defer init></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -63,24 +64,31 @@
             margin: 0 auto;
         }
     </style>
+    <script src="https://unpkg.com/petite-vue" defer init></script>
 </head>
 
-<body>
-    <div class="page">
-        <img src="./Logo footmatch.svg" alt="">
-
-        <h1>What's your email?</h1>
-        <p>Don’t lose access to your account, verify your email.
-        </p>
-        <p class="small">
-            I want to receive news, updates and offers from FoodMatch.
-        </p>
-        <button>Continue</button></p>
-        <p><button>Continue</button></p>
-        <br />
-        <br />
+<body v-scope="{ name: 'homepage' }">
+    name: {{ name }}
+    <div v-if="name == 'homepage'" class="page">
+      <h1>Welcome!</h1>
+      <p>
+       Ciaobella
+      </p>
+      <button @click="name = 'email'">Enter you email</button>
     </div>
 
-</body>
+    <div v-if="name == 'email'" class="page">
+      <h1>What’s your email?</h1>
+      <p>
+        Don’t lose access to your account, verify your email. Don’t lose access to
+        your account, verify your email.
+      </p>
+      <p class="small">
+        Want to receive news, updates and offers from FoodMatch. Want to receive
+        news, updates and offers from FoodMatch.
+      </p>
+      <button @click="name = 'homepage'">Back to homepage</button>
+    </div>
+  </body>
 
 </html>

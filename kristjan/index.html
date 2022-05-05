@@ -54,8 +54,13 @@
     </style>
     <script src="https://unpkg.com/petite-vue" defer init></script>
   </head>
+
   <body v-scope="{ name: 'homepage' }">
-    name: {{ name }}
+  
+    <svg width="400" height="400">
+      <circle v-for="a in 20" cx="200" cy="200" :r="a * 10" opacity="0.1" fill="red" />
+    </svg>
+
     <div v-if="name == 'homepage'" class="page">
       <h1>Welcome!</h1>
       <p>
@@ -76,6 +81,7 @@
       </p>
       <button @click="name = 'homepage'">Back to homepage</button>
     </div>
+
   </body>
 </html>
 

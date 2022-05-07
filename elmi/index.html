@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,17 +15,20 @@
             padding: 32px;
             margin: 0;
         }
+
         h1 {
             color: hsl(25, 95%, 53%);
             font-size: 32px;
             font-weight: bold;
             margin-bottom: 16px;
         }
+
         p {
             margin-bottom: 8px;
             line-height: 20px;
             line-height: 130%;
         }
+
         .small {
             font-size: 16px;
         }
@@ -62,44 +66,49 @@
     </style>
     <script src="https://unpkg.com/petite-vue" defer init></script>
 </head>
+
 <body v-scope="{ name: 'homepage' }">
     name: {{ name }}
     <div v-if="name == 'homepage'" class="page">
         <h1>Welcome!</h1>
         <p>
-         Ciaobella
+            Ciaobella
         </p>
         <button @click="name = 'email'">Enter you email</button>
-      </div>
+    </div>
 
 
     <div class="page">
         </svg>
         <div v-if="name == 'email'" class="page">
-        <h1>What's your email?</h1>
-        <br>
-        <p>Don’t lose access to your account, verify your email.</p>
-        <div class="flex">
-            <input type="checkbox"></input>
-            <p class="small">
-                I want to receive news, updates and offers from FoodMatch.
-            </p>
+            <h1>What's your email?</h1>
+            <br>
+            <p>Don’t lose access to your account, verify your email.</p>
+            <div class="flex">
+                <input type="checkbox"></input>
+                <p class="small">
+                    I want to receive news, updates and offers from FoodMatch.
+                </p>
+            </div>
+            <button @click="name = 'homepage'">Back to homepage</button>
         </div>
-        <button @click="name = 'homepage'">Back to homepage</button>
-        </div>
-        </div>
+    </div>
 </body>
+
 </html>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
+
 <body>
-  
+
 </body>
+
 </html>

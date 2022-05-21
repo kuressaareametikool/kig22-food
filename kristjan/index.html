@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -56,24 +56,17 @@
   </head>
 
   <body v-scope="{ name: 'homepage' }">
-  
-    <svg width="400" height="400">
-      <circle v-for="a in 20" cx="200" cy="200" :r="a * 10" opacity="0.1" fill="red" />
-    </svg>
-
     <div v-if="name == 'homepage'" class="page">
       <h1>Welcome!</h1>
-      <p>
-       Ciaobella
-      </p>
+      <p>Ciaobella</p>
       <button @click="name = 'email'">Enter you email</button>
     </div>
 
     <div v-if="name == 'email'" class="page">
       <h1>What’s your email?</h1>
       <p>
-        Don’t lose access to your account, verify your email. Don’t lose access to
-        your account, verify your email.
+        Don’t lose access to your account, verify your email. Don’t lose access
+        to your account, verify your email.
       </p>
       <p class="small">
         Want to receive news, updates and offers from FoodMatch. Want to receive
@@ -81,19 +74,16 @@
       </p>
       <button @click="name = 'homepage'">Back to homepage</button>
     </div>
-
   </body>
 </html>
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
 </html>

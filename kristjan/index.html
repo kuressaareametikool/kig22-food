@@ -95,6 +95,17 @@
         font-size: 20px;
         margin-bottom: 8px;
       }
+      /*
+      BASIC CASE
+      "chat card / user last message"
+      .chatcard .userlastmessage // lowercase
+      .ChatCard .UserLastMessage // pascalcase
+      .chatCard .userLastMessage // camelcase
+      .chat-card .user-last-message // kebabcase
+      .chat_card .user_last_message // snakecase
+      .chat_card .user-last-message // ?
+      .ChatCard__user_last_message // BEM-inspired
+      */
       .chat .userlastmessage {
         opacity: 0.5;
       }
@@ -105,13 +116,21 @@
     <script src="https://unpkg.com/petite-vue" defer init></script>
   </head>
 
-  <body v-scope="{ name: 'chats' }">
+  <body
+    v-scope="{
+      name: 'chats',
+      chats: [
+        {username: 'Mustafa', message: 'hello'},
+        {username: 'Mustafa 2', message: 'world'}
+      ]
+    }"
+  >
     <div v-if="name == 'chats'" class="page">
-      <div class="chat">
+      <div class="chat" v-for="chat in chats">
         <div><img class="userimage" src="mustafa.png" /></div>
         <div>
-          <div class="username">Juhainah Thuwaibah Sabbagh</div>
-          <div class="userlastmessage">Linakul maean!</div>
+          <div class="username">{{ chat.username }}</div>
+          <div class="userlastmessage">{{ chat.message }}</div>
         </div>
       </div>
     </div>

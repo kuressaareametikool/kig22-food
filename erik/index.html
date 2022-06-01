@@ -105,16 +105,28 @@
     <script src="https://unpkg.com/petite-vue" defer init></script>
   </head>
 
-  <body v-scope="{ name: 'chats' }">
+  <body 
+  v-scope="{
+     name: 'chats', 
+     chats: [
+     {username: 'Jenny', message:'Hello! That\'s my long message, do You like it Or should I modify it????? Help!!', src:'https://images.generated.photos/v42LgE7Cr93v_D0NMOVKXQtVW4YReFNkcZfe2nAIe-s/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/NzU5NzE3LmpwZw.jpg'},
+     {username: 'Maiu', message:'you', src:'https://images.generated.photos/jUCmigFPqWC7zbDmFhVw26wvlmv7m44z2n8hN3EHwX0/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/Mzk3MTk1LmpwZw.jpg'},
+     {username: 'Mustafa Mustafa Theodor Bodagra De La Costa Mi Nigel', message:'Hoi!!', src:'https://images.generated.photos/r8_mh1hmli41kr2Gebys-aeCioBno_BYqYsL4F2nUGs/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy8wNzEx/OTU4LmpwZw.jpg'},
+     {username: 'Peeter', message:'Tere tere vanakere!', src:'https://images.generated.photos/gguTSXROX8W9n83xl8fw1DvRzYw3StApCMYPXsBAYk8/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/NzUyMjEyLmpwZw.jpg'}
+     ]
+    }"
+    >
     <div v-if="name == 'chats'" class="page">
-      <div class="chat">
-        <div><img class="userimage" src="mustafa.png" /></div>
+      <div class="chat" v-for="chat in chats">
+        <div><img class="userimage" :src="chat.src" /></div>
         <div>
-          <div class="username">Juhainah Thuwaibah Sabbagh</div>
-          <div class="userlastmessage">Linakul maean!</div>
+          <div class="username">{{chat.username.split(' ')[0]}}</div>
+          <div class="userlastmessage">{{chat.message.slice(0, 30) + '...'}}</div>
         </div>
       </div>
     </div>
+</body>
+    
 
     <div v-if="name == 'homepage2'" class="page">
       <h1>Welcome!</h1>

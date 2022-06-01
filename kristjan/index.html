@@ -84,6 +84,7 @@
         gap: 16px;
         border-bottom: 1px solid #fdba74;
         padding: 24px;
+        width: 400px;
       }
       .chat .userimage {
         aspect-ratio: 1 / 1;
@@ -120,10 +121,9 @@
     v-scope="{
       name: 'chats',
       chats: [
-        {username: 'Mustafa', message: 'hello', src: 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/38/386b4d3a7a93dcf54cbe74297e7fec63bf58ba54_full.jpg'},
-        {username: 'Minamemma', message: 'yourba', src: 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/80/809fc43b277328f5cd0483e83b36dca7c544fb66_full.jpg'},
-        {username: 'Sikilaala', message: 'haaha', src: 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/50/50e859b967cde838885b89bd4b35e35ffc743fc3_full.jpg'},
-        {username: 'Pinopango', message: 'Sokikingo', src: 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/07/07cd7653b80c8c72fe816bafa9e25d32d5a882da_full.jpg'},
+        {username: 'Hubert Blaine Wolfe­schlegel­stein­hausen­berger­dorff', message: 'KUTSE: Digital Literacy Leadership Forum Integrating Emerging Technologies in Education Ettekanded: AI and the Future of Human Intelligence and Learning, Metaverse, Digital skills and education.', src: 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/38/386b4d3a7a93dcf54cbe74297e7fec63bf58ba54_full.jpg'},
+        {username: 'Adolph Blaine Charles David Earl Frederick Gerald Hubert Irvin John Kenneth Lloyd Martin Nero Oliver Paul Quincy Randolph Sherman Thomas Uncas Victor William Xerxes Yancy', message: 'haaha', src: 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/50/50e859b967cde838885b89bd4b35e35ffc743fc3_full.jpg'},
+        {username: 'Kristjan Jansen', message: 'Sokikingo', src: 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/07/07cd7653b80c8c72fe816bafa9e25d32d5a882da_full.jpg'},
       ]
     }"
   >
@@ -132,7 +132,10 @@
         <div><img class="userimage" :src="chat.src" /></div>
         <div>
           <div class="username">{{ chat.username }}</div>
-          <div class="userlastmessage">{{ chat.message }}</div>
+          <div class="username">{{ chat.username.split(' ')[0] }}</div>
+          <div class="userlastmessage">
+            {{ chat.message.slice(0, 30) + '...' }}
+          </div>
         </div>
       </div>
     </div>

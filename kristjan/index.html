@@ -120,14 +120,16 @@
     v-scope="{
       name: 'chats',
       chats: [
-        {username: 'Mustafa', message: 'hello'},
-        {username: 'Mustafa 2', message: 'world'}
+        {username: 'Mustafa', message: 'hello', src: 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/38/386b4d3a7a93dcf54cbe74297e7fec63bf58ba54_full.jpg'},
+        {username: 'Minamemma', message: 'yourba', src: 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/80/809fc43b277328f5cd0483e83b36dca7c544fb66_full.jpg'},
+        {username: 'Sikilaala', message: 'haaha', src: 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/50/50e859b967cde838885b89bd4b35e35ffc743fc3_full.jpg'},
+        {username: 'Pinopango', message: 'Sokikingo', src: 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/07/07cd7653b80c8c72fe816bafa9e25d32d5a882da_full.jpg'},
       ]
     }"
   >
     <div v-if="name == 'chats'" class="page">
       <div class="chat" v-for="chat in chats">
-        <div><img class="userimage" src="mustafa.png" /></div>
+        <div><img class="userimage" :src="chat.src" /></div>
         <div>
           <div class="username">{{ chat.username }}</div>
           <div class="userlastmessage">{{ chat.message }}</div>

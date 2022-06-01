@@ -85,7 +85,7 @@
         .chat {
             display: flex;
             gap: 16px;
-            border: 2px solid red;
+            border-bottom: 1px solid #fdba74;
             padding: 24px;
         }
 
@@ -114,13 +114,22 @@
     <script src="https://unpkg.com/petite-vue" defer init></script>
 </head>
 
-<body v-scope="{ name: 'chats' }">
+<body v-scope="{
+    name: 'chats', 
+    chats: [
+    {username: 'Mustafa', message: 'hello', src: 'Mustafa.jpg'}, 
+    {username: 'Eskimo', message: 'world', src: 'Eskimo.jpg'},
+    {username: 'King Kong Rong', message: 'Hi, Im, handsome and nice', src: 'KingKongRong.jpg'},
+    {username: 'Jim John', message: 'lets eat', src: 'JimJohn.jpg'},
+    {username: 'Gerhard Hausenrosen', message: 'hello world', src: 'GerhardHausenrosen.jpg'},
+    ] 
+}">
     <div v-if="name == 'chats'" class="page">
-        <div class="chat">
-            <div><img class="userimage" src="Mustafa.jpg" /></div>
+        <div class="chat" v-for="chat in chats">
+            <div><img class="userimage" :src="chat.src" /></div>
             <div>
-                <div class="username">King Kong Rong</div>
-                <div class="userlastmessage">Lets eat together</div>
+                <div class="username">{{ chat.username.split(' ')[0] }}</div>
+                <div class="userlastmessage">{{ chat.message.slice(0, 30) + '. . .' }}</div>
             </div>
         </div>
     </div>

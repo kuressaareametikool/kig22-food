@@ -1,151 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <script src="https://unpkg.com/petite-vue" defer init></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        /* border: 1px solid blue !important; */
+      }
 
-  <style>
-  /*
-  *{
-  	all:unset;
-  	display:revert;
-  	border:1px solid blue;
-  }
-  */
-  /*
-  4
-  8
-  16
-  20. /typole
-  24
-  32
-  64
-  */
-     body {
-     	font-family: 'Rubik', sans-serif;
-    	background: #FED7AA;
-    	padding:24px;
-    	font-size:20px;
-     }
-     .page1 {
-     	visibility:show;
-     	max-width: 60ch;
-     	margin: 0 auto;
-     }	
-         .page2 {
-     	visibility:hidden;
-     	max-width: 60ch;
-     	margin: 0 auto;
-     }	
-     h1 {
-     	color: #f97316;
-     	font-size:32px;
-     	font-weight:bold;
-     	margin-bottom:16px;
-     }
-     p {
-     	margin-bottom:8px;
-     	line-height:135%;
-     }
-     .small {
-     	font-size:16px;
-     }
-     .space	{
-     	height: 16px;
-     }
-     input {
-     	all:revert;
-     	accent-color: #f97316;
-     }
-     .flex {
-     	gap: 8px;
-     	display:flex;
-     }
-     button {
-    	background: hsla(25, 95%, 100%, 0.9);
+      body {
+        font-family: "Rubik", sans-serif;
+        background: hsl(32, 98%, 83%);
+        padding: 32px;
+        margin: 0;
+      }
 
-		box-shadow: 0px 6px 6px hsla(25, 95%, 53%, 0.2);
-		border-radius: 8px;
-		border-color: #F97316;
-		border-width:4px;
-		padding: 8px 16px;
-		font-size:16px;
-		color: hsla(25, 95%, 53%, 1);
-		width:100%;
-		margin: 16px 16px 16px 0px;
-	}
-	button:hover {
-		background: hsla(25, 95%, 53%, 0.8);
-		color: hsla(25, 95%, 100%, 0.9);
-	}
-	.button-width
-	 {
-	text-align:center;
-	 justify-content:center;
-	 width:50%;
-	 
-	 	
-}
-	.center  {
-		display:flex;
-		justify-content:center;
-		gap: 8px;
-	}
-     
+      h1 {
+        color: hsl(25, 95%, 53%);
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 16px;
+      }
+
+      p {
+        margin-bottom: 8px;
+        font-size: 20px;
+        line-height: 130%;
+      }
+
+      .small {
+        font-size: 16px;
+      }
+
+      button {
+        background: hsl(33, 100%, 96%);
+        box-shadow: 0px 4px 4px hsl(0, 0%, 0%, 0.1);
+        border-radius: 8px;
+        border: none;
+        padding: 16px 32px;
+        font-family: "Rubik", sans-serif;
+        font-size: 20px;
+        color: hsl(25, 95%, 53%);
+        width: 100%;
+      }
+
+      button:hover {
+        background: hsl(33, 100%, 92%);
+      }
+
+      .page {
+        max-width: 60ch;
+        margin: 0 auto;
+      }
+
+      .backround-icon {
+        fill: hsla(31, 97%, 72%, 1);
+        pointer-events: none;
+        opacity: 0.7;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+        /*
+        border-radius: 8px;
+        margin-top: 8px;
+        box-shadow: -21px 17px 39px 0px rgba(0, 0, 0, 0.1);
+        object-fit: cover;
+        aspect-ratio: 1 / 1;
+        */
+      }
+      .chat:first-child {
+        flex-shrink: 0; /* This prevents the image from deforming by flexbox */
+      }
+
+      .chat {
+        display: flex;
+        gap: 16px;
+        border-bottom: 1px solid #fdba74;
+        padding: 24px;
+      }
+      .chat .userimage {
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        width: 48px;
+        border-radius: 100%;
+      }
+      .chat .username {
+        font-size: 20px;
+        margin-bottom: 8px;
+      }
+      .chat .userlastmessage {
+        opacity: 0.5;
+      }
+      /* .chat > * > * {
+        border: 1px solid blue;
+      } */
     </style>
-</head>
-  <body v-scope="{ name: 'First name', page: 1 }">
-  <div v-if="page == 1">
-  <div class="page">
-   <h1>Page1</h1>
-    <p>Don't lose access to your account, verify your email. Don't lose access to your account, verify your email.
-    Don't lose access to your account, verify your email.
-    Don't lose access to your account, verify your email.</p>
+    <script src="https://unpkg.com/petite-vue" defer init></script>
+  </head>
 
-<div class="flex";>
-	 <input type="checkbox"></input>
-    <p class="small">I want to receive news, updates and offers from FoodMatch.</p>
- </div>
- 
-<div class="center">
-<div class="button-width">
-		<button @click="page=2; name='Kristjan'">Make Kristjan to scream!</button>
- 
-		<button>Continue</button>
-	</div>
-</div>
- {{ name }}
-	</div>
-</div>
+  <body 
+  v-scope="{
+     name: 'chats', 
+     chats: [
+     {username: 'Jenny', message:'Hello! That\'s my long message, do You like it Or should I modify it????? Help!!', src:'https://images.generated.photos/v42LgE7Cr93v_D0NMOVKXQtVW4YReFNkcZfe2nAIe-s/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/NzU5NzE3LmpwZw.jpg'},
+     {username: 'Maiu', message:'you', src:'https://images.generated.photos/jUCmigFPqWC7zbDmFhVw26wvlmv7m44z2n8hN3EHwX0/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/Mzk3MTk1LmpwZw.jpg'},
+     {username: 'Mustafa Mustafa Theodor Bodagra De La Costa Mi Nigel', message:'Hoi!!', src:'https://images.generated.photos/r8_mh1hmli41kr2Gebys-aeCioBno_BYqYsL4F2nUGs/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy8wNzEx/OTU4LmpwZw.jpg'},
+     {username: 'Peeter', message:'Tere tere vanakere!', src:'https://images.generated.photos/gguTSXROX8W9n83xl8fw1DvRzYw3StApCMYPXsBAYk8/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/NzUyMjEyLmpwZw.jpg'}
+     ]
+    }"
+    >
+    <div v-if="name == 'chats'" class="page">
+      <div class="chat" v-for="chat in chats">
+        <div><img class="userimage" :src="chat.src" /></div>
+        <div>
+          <div class="username">{{chat.username.split(' ')[0]}}</div>
+          <div class="userlastmessage">{{chat.message.slice(0, 30) + '...'}}</div>
+        </div>
+      </div>
+    </div>
+</body>
+    
 
-<!--  page 2 -->
-<div v-if="page == 2">
-<div class="page">
-    <h1>Page2</h1>
-    <p>Don't lose access to your account, verify your email. Don't lose access to your account, verify your email.
-    Don't lose access to your account, verify your email.
-    Don't lose access to your account, verify your email.</p>
+    <div v-if="name == 'homepage2'" class="page">
+      <h1>Welcome!</h1>
+      <p>Ciaobella</p>
+      <button @click="name = 'email'">Enter you email</button>
+      <svg
+        class="backround-icon"
+        style="transform: translate(20px, 0px) rotate(-22deg)"
+        width="168"
+        height="191"
+        viewBox="0 0 168 191"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M118.082 86.2907C116.245 85.9237 114.63 84.8422 113.591 83.2842C112.552 81.7262 112.175 79.8194 112.542 77.983C112.909 76.1467 113.99 74.5314 115.548 73.4925C117.106 72.4535 119.013 72.076 120.849 72.4431C129.35 74.1375 135.77 80.087 139.187 88.0605C142.576 95.9492 143.075 105.815 140.43 116.377C140.223 117.295 139.835 118.162 139.289 118.928C138.742 119.694 138.048 120.343 137.247 120.837C136.446 121.331 135.555 121.659 134.625 121.804C133.695 121.948 132.746 121.905 131.833 121.677C130.92 121.45 130.062 121.042 129.309 120.477C128.556 119.913 127.923 119.204 127.448 118.392C126.973 117.58 126.665 116.681 126.542 115.748C126.419 114.815 126.484 113.867 126.733 112.96C128.804 104.695 128.126 98.0861 126.215 93.624C124.332 89.2372 121.339 86.9402 118.082 86.2813L118.082 86.2907ZM145.626 12.7129C146.028 19.3963 145.049 26.091 142.751 32.3797C140.453 38.6685 136.885 44.4168 132.268 49.2664C141.236 51.8377 149.265 56.9563 155.381 64.0012C161.497 71.0461 165.437 79.7146 166.723 88.9548C169.821 111.126 165.272 133.691 153.826 152.931L150.531 158.485C150.406 158.689 150.271 158.887 150.126 159.078L136.796 177.02C133.973 180.823 130.355 183.965 126.193 186.227C122.032 188.489 117.428 189.816 112.701 190.117C107.974 190.418 103.239 189.686 98.8241 187.97C94.4094 186.254 90.4217 183.597 87.1387 180.183C86.7549 179.784 86.2944 179.467 85.7848 179.25C85.2753 179.033 84.7272 178.921 84.1734 178.921C83.6196 178.921 83.0715 179.033 82.562 179.25C82.0524 179.467 81.5919 179.784 81.2081 180.183C77.925 183.597 73.9374 186.254 69.5227 187.97C65.1081 189.686 60.3725 190.419 55.6458 190.117C50.9191 189.816 46.3148 188.489 42.1535 186.227C37.9922 183.965 34.3739 180.823 31.5506 177.02L18.2207 159.068C18.0789 158.878 17.9469 158.68 17.8253 158.475L14.5211 152.921C3.06699 133.688 -1.49187 111.126 1.59601 88.9548C2.50744 82.4218 4.75016 76.1454 8.18531 70.5142C11.6205 64.883 16.1749 60.0168 21.5668 56.2169C26.9586 52.417 33.073 49.7643 39.5315 48.4231C45.99 47.0818 52.655 47.0805 59.114 48.4192L77.0095 52.1282L77.0378 52.1282C76.7554 44.7855 75.6069 36.8779 73.357 30.1189C70.627 21.9477 66.8427 17.0338 62.6253 15.2828C60.8964 14.5613 59.5249 13.1825 58.8125 11.4497C58.1002 9.71694 58.1053 7.77217 58.8269 6.04322C59.5484 4.31427 60.9272 2.94276 62.66 2.23042C64.3927 1.51807 66.3375 1.52323 68.0665 2.24477C77.9697 6.37741 83.5991 16.1771 86.7527 25.6473L87.1858 26.9841C89.5041 22.5046 92.4982 18.4087 96.0629 14.8404C100.945 9.95268 106.81 6.15792 113.269 3.70736C119.728 1.25681 126.634 0.206369 133.53 0.625604C136.677 0.806738 139.648 2.13657 141.879 4.36284C144.11 6.58911 145.447 9.55697 145.636 12.7034L145.626 12.7129ZM131.572 14.6615C126.848 14.5252 122.146 15.3568 117.755 17.1052C113.365 18.8537 109.378 21.4819 106.042 24.8283C102.695 28.1653 100.067 32.1517 98.3184 36.5422C96.57 40.9327 95.7383 45.6345 95.8747 50.3584C97.582 50.4047 99.2905 50.3261 100.986 50.1231L106.795 48.9181C112.315 47.2711 117.337 44.2715 121.405 40.1916C124.751 36.8546 127.379 32.8683 129.128 28.4777C130.876 24.0872 131.708 19.3854 131.572 14.6615ZM112.095 62.2386L110.193 62.6339C107.934 63.2741 105.637 63.7542 103.321 64.0648L94.1896 65.9476C87.5761 67.3177 80.7519 67.3177 74.1383 65.9476L56.2334 62.2386C51.6663 61.292 46.9535 61.2931 42.3868 62.2417C37.8201 63.1903 33.4968 65.0662 29.6845 67.7534C25.8722 70.4405 22.6521 73.8816 20.2236 77.8637C17.7951 81.8457 16.2098 86.2839 15.566 90.9034C12.9225 109.898 16.8306 129.226 26.646 145.701L29.762 150.944L42.8753 168.604C44.4756 170.76 46.5267 172.541 48.8856 173.823C51.2445 175.105 53.8546 175.858 56.534 176.028C59.2134 176.198 61.8976 175.782 64.3999 174.809C66.9021 173.836 69.1621 172.329 71.0224 170.393C72.7231 168.623 74.7637 167.215 77.0219 166.253C79.2802 165.291 81.7094 164.795 84.164 164.795C86.6185 164.795 89.0478 165.291 91.306 166.253C93.5643 167.215 95.6049 168.623 97.3056 170.393C99.1659 172.329 101.426 173.836 103.928 174.809C106.43 175.782 109.115 176.198 111.794 176.028C114.473 175.857 117.083 175.105 119.442 173.823C121.801 172.541 123.852 170.76 125.453 168.604L138.566 150.944L141.682 145.701C151.494 129.225 155.399 109.897 152.753 90.9034C152.109 86.2849 150.524 81.8476 148.096 77.8663C145.668 73.885 142.449 70.4444 138.637 67.7574C134.826 65.0704 130.504 63.1942 125.938 62.2449C121.373 61.2956 116.661 61.2935 112.095 62.2386Z"
+        />
+      </svg>
+      <img src="images/food-dark.jpg" alt="Food" />
+      <img src="images/food-ligth.jpg" alt="Food light" />
+    </div>
 
-<div class="flex";>
-	 <input type="checkbox"></input>
-    <p class="small">I want to receive news, updates and offers from FoodMatch.</p>
- </div>
- 
-<div class="center">
-<div class="button-width">
-		<button @click="page=1; name='Blabla'">Make Kristjan to scream!</button>
- 
-		<button>Continue</button>
-	</div>
-</div>
- {{ name }}
- </div>
-</div>
-
-
-
-
+    <div v-if="name == 'email'" class="page">
+      <h1>What’s your email?</h1>
+      <p>
+        Don’t lose access to your account, verify your email. Don’t lose access
+        to your account, verify your email.
+      </p>
+      <p class="small">
+        Want to receive news, updates and offers from FoodMatch. Want to receive
+        news, updates and offers from FoodMatch.
+      </p>
+      <button @click="name = 'homepage'">Back to homepage</button>
+    </div>
   </body>
 </html>

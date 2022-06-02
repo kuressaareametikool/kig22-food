@@ -38,13 +38,13 @@
         img {
             display: block;
             width: 100%;
+            /*
             border-radius: 8px;
             margin-bottom: 32px;
             box-shadow: -21px 17px 39px 0px rgba(0, 0, 0, 0.1);
             aspect-ratio: 2/1;
             object-fit: cover;
-            "
-
+*/
         }
 
         .small {
@@ -81,13 +81,65 @@
             pointer-events: none;
             opacity: 0.5;
         }
+
+        .chat {
+            display: flex;
+            gap: 16px;
+            border-bottom: 1px solid #fdba74;
+            padding: 24px;
+        }
+
+        .chat:first-child {
+            flex-shrink: 0;
+            /*This prevents the image from deforming by flexbox*/
+        }
+
+        .chat .userimage {
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            width: 128px;
+            border-radius: 100%;
+        }
+
+        .chat .username {
+            font-size: 20px;
+            padding: 8px;
+        }
+
+        .chat .userlastmessage {
+            opacity: 0.5;
+            padding: 8px;
+        }
     </style>
     <script src="https://unpkg.com/petite-vue" defer init></script>
 </head>
 
+<body v-scope="{
+    name: 'chats', 
+    chats: [
+    {username: 'Mustafa', message: 'hello', src: 'Mustafa.jpg'}, 
+    {username: 'Eskimo', message: 'world', src: 'Eskimo.jpg'},
+    {username: 'King Kong Rong', message: 'Hi, Im, handsome and nice', src: 'KingKongRong.jpg'},
+    {username: 'Jim John', message: 'lets eat', src: 'JimJohn.jpg'},
+    {username: 'Gerhard Hausenrosen', message: 'hello world', src: 'GerhardHausenrosen.jpg'},
+    ] 
+}">
+    <div v-if="name == 'chats'" class="page">
+        <div class="chat" v-for="chat in chats">
+            <div><img class="userimage" :src="chat.src" /></div>
+            <div>
+                <div class="username">{{ chat.username }}</div>
+                <div class="username">{{ chat.username.split(' ')[0] }}</div>
+                <div class="userlastmessage">{{ chat.message.slice(0, 30) + '. . .' }}</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
 <body v-scope="{ name: 'homepage' }">
     name: {{ name }}
-    <div v-if="name == 'homepage'" class="page">
+    <div v-if="name == 'homepage2'" class="page">
         <h1>Welcome!</h1>
         <svg class="background-icon" style="transform: translate(300px, -25px) rotate(10deg) scale(1);" width="197"
             height="208" viewBox="0 0 197 208" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -110,6 +162,7 @@
         </svg>
         <img src="food_II.jpg" alt="FoodII">
         <img src="food_I.jpg" alt="FoodI">
+        <img src="food_III.jpg" alt="foodIII">
     </div>
 
     <div v-if="name == 'email'" class="page">
